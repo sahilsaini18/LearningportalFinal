@@ -10,15 +10,14 @@ import lombok.Data;
 
 @Data
 public class RegisterUserDto {
-    
-     private String name;
-     
-    
-     private String email;
-     
-     private String password;
-     
-     private Set<Role> roles;
-     
-     private Set<Courses> courses;
+
+	private String name;
+
+	private String email;
+
+	private String password;
+
+	private Set<Role> roles;
+
+	private Set<Courses> courses;
 }

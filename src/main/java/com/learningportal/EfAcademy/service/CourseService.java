@@ -61,29 +61,30 @@ public class CourseService {
 		return false;
 	}
 
-	 public Optional<List<CoursesCategory>> getCourse(GetCourseDto getCourseDto) {
-	        Optional<Category> categoryObject = categoryRepository.findByCategoryType(getCourseDto.getCategory());
+	public Optional<List<CoursesCategory>> getCourse(GetCourseDto getCourseDto) {
+		Optional<Category> categoryObject = categoryRepository.findByCategoryType(getCourseDto.getCategory());
 
-	        if (categoryObject.isEmpty()) {
-	            return Optional.empty();  
-	        }
+		if (categoryObject.isEmpty()) {
+			return Optional.empty();
+		}
 
-	        Category category = categoryObject.get();
+		Category category = categoryObject.get();
 
-	        List<CoursesCategory> courses = coursesCategoryRepository.findByCategory(category);
-	        log.info("Retrieved {} courses for category: {}", courses.size(), category.getCategoryType());
-	        return Optional.of(courses);  
-	    }
+		List<CoursesCategory> courses = coursesCategoryRepository.findByCategory(category);
+		log.info("Retrieved {} courses for category: {}", courses.size(), category.getCategoryType());
+		return Optional.of(courses);
+	}
 
-	    public ResponseEntity<?> getCourseId(Long id, GetCourseDto getCourseDto) {
-	        List<CoursesCategory> courses = getCourse(getCourseDto).orElse(Collections.emptyList());
+	public ResponseEntity<?> getCourseId(Long id, GetCourseDto getCourseDto) {
+		List<CoursesCategory> courses = getCourse(getCourseDto).orElse(Collections.emptyList());
 
-	        for (CoursesCategory course : courses) {
-	            if (course.getId().equals(id)) {
-	                return new ResponseEntity<>(course, HttpStatus.OK);
-	            }
-	        }
+		for (CoursesCategory course : courses) {
+			if (course.getId().equals(id)) {
+				return new ResponseEntity<>(course, HttpStatus.OK);
+			}
+		}
 
-	        return new ResponseEntity<>(Collections.singletonMap("Message", "Course id doesn't exist"), HttpStatus.BAD_REQUEST);
-	    }
+		return new ResponseEntity<>(Collections.singletonMap("Message", "Course id doesn't exist"),
+				HttpStatus.BAD_REQUEST);
+	}
 }

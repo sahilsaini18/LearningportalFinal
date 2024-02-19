@@ -23,36 +23,39 @@ import com.learningportal.EfAcademy.service.CourseService;
 @RequestMapping("/course")
 public class CourseController {
 
-    private final CourseService courseService;
-    private static final String MESSAGE_KEY = "Message";
+	private final CourseService courseService;
+	private static final String MESSAGE_KEY = "Message";
 
-    public CourseController(CourseService courseService) {
-        this.courseService = courseService;
-    }
+	public CourseController(CourseService courseService) {
+		this.courseService = courseService;
+	}
 
-    @PostMapping("/create")
-    public ResponseEntity<?> createCourses(@Valid @RequestBody CourseDto courseDto) {
-        boolean create = courseService.addCourse(courseDto);
-        if (create) {
-            return new ResponseEntity<>(Collections.singletonMap(MESSAGE_KEY, "Course added successfully"), HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(Collections.singletonMap(MESSAGE_KEY, "Some error occurred"), HttpStatus.BAD_REQUEST);
-        }
-    }
+	@PostMapping("/create")
+	public ResponseEntity<?> createCourses(@Valid @RequestBody CourseDto courseDto) {
+		boolean create = courseService.addCourse(courseDto);
+		if (create) {
+			return new ResponseEntity<>(Collections.singletonMap(MESSAGE_KEY, "Course added successfully"),
+					HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<>(Collections.singletonMap(MESSAGE_KEY, "Some error occurred"),
+					HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    @PostMapping("/view")
-    public ResponseEntity<?> viewCourses(@Valid @RequestBody GetCourseDto getCourseDto) {
-        Optional<List<CoursesCategory>> response = courseService.getCourse(getCourseDto);
+	@PostMapping("/view")
+	public ResponseEntity<?> viewCourses(@Valid @RequestBody GetCourseDto getCourseDto) {
+		Optional<List<CoursesCategory>> response = courseService.getCourse(getCourseDto);
 
-        if (response.isEmpty()) {
-            return new ResponseEntity<>(Collections.singletonMap(MESSAGE_KEY, "Category does not exist"), HttpStatus.BAD_REQUEST);
-        }
+		if (response.isEmpty()) {
+			return new ResponseEntity<>(Collections.singletonMap(MESSAGE_KEY, "Category does not exist"),
+					HttpStatus.BAD_REQUEST);
+		}
 
-        return new ResponseEntity<>(response.get(), HttpStatus.OK);
-    }
+		return new ResponseEntity<>(response.get(), HttpStatus.OK);
+	}
 
-    @PostMapping("/view/{id}")
-    public ResponseEntity<?> viewCourseById(@Valid @PathVariable Long id, @RequestBody GetCourseDto getCourseDto) {
-        return courseService.getCourseId(id, getCourseDto);
-    }
+	@PostMapping("/view/{id}")
+	public ResponseEntity<?> viewCourseById(@Valid @PathVariable Long id, @RequestBody GetCourseDto getCourseDto) {
+		return courseService.getCourseId(id, getCourseDto);
+	}
 }

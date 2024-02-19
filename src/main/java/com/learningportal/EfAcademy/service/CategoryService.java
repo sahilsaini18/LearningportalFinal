@@ -46,8 +46,8 @@ public class CategoryService {
 	}
 
 	public Map<String, List<Category>> getCategory() {
-        Map<String, List<Category>> response = new HashMap<>();
-        response.put("Message", categoryRepository.findAll());
-        return response;
-    }
+		Map<String, List<Category>> response = new HashMap<>();
+		response.put("Message", categoryRepository.findAll());
+		return response;
+	}
 }

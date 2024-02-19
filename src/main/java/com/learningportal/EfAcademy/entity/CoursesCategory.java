@@ -14,15 +14,15 @@ import lombok.Data;
 @Entity
 @Table(name = "course_mapper")
 public class CoursesCategory {
-    
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "course_id")
 	private Courses course;

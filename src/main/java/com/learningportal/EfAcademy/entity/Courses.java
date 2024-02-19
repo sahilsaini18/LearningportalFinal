@@ -13,15 +13,15 @@ import lombok.Data;
 @Entity
 @Table(name = "courses")
 public class Courses {
-   
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "course_name")
 	private String courseName;
-	
+
 	@Column(name = "author")
 	private String authorID;
-	
+
 }

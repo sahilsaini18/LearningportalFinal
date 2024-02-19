@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.learningportal.EfAcademy.entity.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    
-	 @Query(value = "SELECT * FROM category WHERE category_type = :category", nativeQuery = true)
-	 Optional<Category> findByCategoryType(String category);
-} 
+
+	@Query(value = "SELECT * FROM category WHERE category_type = :category", nativeQuery = true)
+	Optional<Category> findByCategoryType(String category);
+}

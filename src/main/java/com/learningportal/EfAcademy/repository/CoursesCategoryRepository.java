@@ -8,6 +8,6 @@ import com.learningportal.EfAcademy.entity.Category;
 import com.learningportal.EfAcademy.entity.CoursesCategory;
 
 public interface CoursesCategoryRepository extends JpaRepository<CoursesCategory, Long> {
-    
+
 	List<CoursesCategory> findByCategory(Category category);
-} 
+}

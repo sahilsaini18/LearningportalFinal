@@ -13,11 +13,11 @@ import lombok.Data;
 @Entity
 @Table(name = "role_details")
 public class Role {
-    
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "role_type", unique = true)
 	private String roleType;
 }

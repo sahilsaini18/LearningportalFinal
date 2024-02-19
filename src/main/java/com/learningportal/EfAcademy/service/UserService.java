@@ -8,7 +8,6 @@ import javax.annotation.security.RolesAllowed;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.feed.AbstractAtomFeedView;
 
-
 import com.learningportal.EfAcademy.dto.LoginUserDto;
 import com.learningportal.EfAcademy.dto.RegisterUserDto;
 import com.learningportal.EfAcademy.entity.Role;
@@ -37,27 +36,25 @@ public class UserService {
 	}
 
 	public boolean registerUser(RegisterUserDto registerUser) {
-		
-		User user=userRepository.findByEmail(registerUser.getEmail());
-			if(user!=null)
-				return false;
-		
-			user= userMapper.registerUserDtoToUser(registerUser);
-	    Role defaultRole = roleRepository.findByRoleType("Learner");
-	    
-	    	if(defaultRole==null) {
-	    	defaultRole= new Role();
-	    	defaultRole.setRoleType("Learner");
-	    	System.out.println(defaultRole);
+
+		User user = userRepository.findByEmail(registerUser.getEmail());
+		if (user != null)
+			return false;
+
+		user = userMapper.registerUserDtoToUser(registerUser);
+		Role defaultRole = roleRepository.findByRoleType("Learner");
+
+		if (defaultRole == null) {
+			defaultRole = new Role();
+			defaultRole.setRoleType("Learner");
+			System.out.println(defaultRole);
 			roleRepository.save(defaultRole);
-	    	}
-	    	user.getRoles().add(defaultRole);
-	    	userRepository.save(user);
-	    	
-	    	
-	    
-			return true;
-	    
+		}
+		user.getRoles().add(defaultRole);
+		userRepository.save(user);
+
+		return true;
+
 	}
 
 	public boolean loginUser(LoginUserDto loginUser) {
