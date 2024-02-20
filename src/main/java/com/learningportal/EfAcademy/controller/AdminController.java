@@ -19,7 +19,7 @@ import com.learningportal.EfAcademy.service.UserService;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-	@Autowired
+	
 	private final UserService userService;
 	private static final String MESSAGE_KEY = "Message";
 

@@ -58,7 +58,7 @@ public class CourseService {
 		coursesCategoryRepository.save(obj);
 
 		log.info("Course added successfully: {}", course);
-		return false;
+		return true;
 	}
 
 	public Optional<List<CoursesCategory>> getCourse(GetCourseDto getCourseDto) {

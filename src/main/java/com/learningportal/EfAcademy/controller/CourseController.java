@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +36,7 @@ public class CourseController {
 		boolean create = courseService.addCourse(courseDto);
 		if (create) {
 			return new ResponseEntity<>(Collections.singletonMap(MESSAGE_KEY, "Course added successfully"),
-					HttpStatus.CREATED);
+					HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(Collections.singletonMap(MESSAGE_KEY, "Some error occurred"),
 					HttpStatus.BAD_REQUEST);

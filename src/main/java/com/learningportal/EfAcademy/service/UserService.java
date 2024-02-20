@@ -31,7 +31,7 @@ public class UserService {
 
 	public boolean registerUser(RegisterUserDto registerUser) {
 
-		User user = userRepository.findThroughEmail(registerUser.getEmail());
+		User user = userRepository.findByEmail(registerUser.getEmail());
 		if (user != null)
 			return false;
 
@@ -41,7 +41,7 @@ public class UserService {
 		if (defaultRole == null) {
 			defaultRole = new Role();
 			defaultRole.setRoleType("Learner");
-			System.out.println(defaultRole);
+
 			roleRepository.save(defaultRole);
 		}
 		user.getRoles().add(defaultRole);
@@ -54,7 +54,7 @@ public class UserService {
 	public boolean loginUser(LoginUserDto loginUser) {
 
 		try {
-			User user = userRepository.findThroughEmail(loginUser.getEmail());
+			User user = userRepository.findByEmail(loginUser.getEmail());
 			RegisterUserDto userDetails = userMapper.userToRegisterUserDto(user);
 
 			if (userDetails.getPassword().equals(loginUser.getPassword())) {

@@ -10,6 +10,6 @@ import com.learningportal.EfAcademy.entity.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-	@Query(value = "SELECT * FROM category WHERE category_type = :ctg", nativeQuery = true)
-	Optional<Category> findByCategoryType(@Param("ctg") String category);
+	@Query(value = "SELECT * FROM course_category WHERE category_type =:categoryType", nativeQuery = true)
+	Optional<Category> findByCategoryType(@Param("categoryType") String categoryType);
 }
