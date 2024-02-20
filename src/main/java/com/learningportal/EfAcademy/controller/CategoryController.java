@@ -43,7 +43,11 @@ public class CategoryController {
 
 	@GetMapping("/all")
 	public ResponseEntity<HashMap<String, List<Category>>> getAllCategory() {
+		List<Category> allCategories = categoryService.getAllCategories(); 
 		HashMap<String, List<Category>> response = new HashMap<>();
-		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+
+		response.put("categories", allCategories);
+
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

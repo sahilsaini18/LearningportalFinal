@@ -1,12 +1,6 @@
 package com.learningportal.EfAcademy.service;
 
-import java.util.HashSet;
-import java.util.Optional;
-
-import javax.annotation.security.RolesAllowed;
-
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.view.feed.AbstractAtomFeedView;
 
 import com.learningportal.EfAcademy.dto.LoginUserDto;
 import com.learningportal.EfAcademy.dto.RegisterUserDto;
@@ -37,7 +31,7 @@ public class UserService {
 
 	public boolean registerUser(RegisterUserDto registerUser) {
 
-		User user = userRepository.findByEmail(registerUser.getEmail());
+		User user = userRepository.findThroughEmail(registerUser.getEmail());
 		if (user != null)
 			return false;
 
@@ -60,7 +54,7 @@ public class UserService {
 	public boolean loginUser(LoginUserDto loginUser) {
 
 		try {
-			User user = userRepository.findByEmail(loginUser.getEmail());
+			User user = userRepository.findThroughEmail(loginUser.getEmail());
 			RegisterUserDto userDetails = userMapper.userToRegisterUserDto(user);
 
 			if (userDetails.getPassword().equals(loginUser.getPassword())) {

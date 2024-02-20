@@ -31,7 +31,7 @@ public class FavouriteService {
 
 		Optional<Courses> course = courseRepository.findById(favouriteDto.getCourseId());
 		String email = favouriteDto.getEmail();
-		User user = userRepository.findByEmail(email);
+		User user = userRepository.findThroughEmail(email);
 
 		if (user == null || course.isEmpty()) {
 			log.error("Failed to add course to favourites. Validation error.");
@@ -51,7 +51,7 @@ public class FavouriteService {
 
 		Optional<Courses> course = courseRepository.findById(favouriteDto.getCourseId());
 		String email = favouriteDto.getEmail();
-		User user = userRepository.findByEmail(email);
+		User user = userRepository.findThroughEmail(email);
 
 		if (user == null || course.isEmpty()) {
 			log.info("Course added to favourites. CourseId: {}, User: {}", favouriteDto.getCourseId(), email);

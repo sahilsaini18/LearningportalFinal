@@ -50,4 +50,8 @@ public class CategoryService {
 		response.put("Message", categoryRepository.findAll());
 		return response;
 	}
+
+	public List<Category> getAllCategories() {
+	    return categoryRepository.findAll();
+	}
 }
